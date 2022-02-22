@@ -7,13 +7,13 @@ import {HttpClient} from '@angular/common/http';
 })
 
 export class AdminService {
-  backendhost='http://localhost:3000/';
-  myorders='http://localhost:3000/myorders';
-  users='http://localhost:3000/users';
-  products='http://localhost:3000/products';
-  setstatus='http://localhost:3000/set_status';
-  cancelorder='http://localhost:3000/cancelorder';
-  totalorder='http://localhost:3000/orders';
+  backendhost='https://nitecartbackend.herokuapp.com/';
+  myorders='https://nitecartbackend.herokuapp.com/myorders';
+  users='https://nitecartbackend.herokuapp.com/users';
+  products='https://nitecartbackend.herokuapp.com//products';
+  setstatus='https://nitecartbackend.herokuapp.com//set_status';
+  cancelorder='https://nitecartbackend.herokuapp.com//cancelorder';
+  totalorder='https://nitecartbackend.herokuapp.com//orders';
 
   constructor(private _http:HttpClient) { }
 

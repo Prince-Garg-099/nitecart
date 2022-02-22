@@ -8,8 +8,8 @@ import { HttpClient } from '@angular/common/http';
 export class UserService {
 
   constructor(private _http: HttpClient) { }
-  orderidUrl = 'http://localhost:3000/orders';
-  apiUrl = 'http://localhost:3000/user';
+  orderidUrl = 'https://nitecartbackend.herokuapp.com/orders';
+  apiUrl = 'https://nitecartbackend.herokuapp.com//user';
 
   addData(data: any): Observable<any> {
     return this._http.post(`${this.apiUrl}`, data);
