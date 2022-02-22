@@ -7,10 +7,10 @@
       placeholder="Search products, brands or more" aria-label="Search">
     <button class="btn btn-light" style="border-radius: 0px 5px 5px 0px ; border: none;" type="submit"><i
         style="color: black;" class="fas fa-search"></i></button>&nbsp;
-    <div *ngIf="service.loggedIn()" [routerLink]="['/app-cart']" class="ms-3  " style="color: white; cursor: pointer; ">
+    <div *ngIf="service.loggedIn()" [routerLink]="['/app-cart']" class="ms-1  " style="color: white; cursor: pointer; ">
       <i class="fa fa-shopping-cart fa-2x"></i>
     </div>
-    <div *ngIf="!service.loggedIn()" (click)="openModal(template)" class="ms-3  "
+    <div *ngIf="!service.loggedIn()" (click)="openModal(template)" class="ms-1  "
       style="color: white; cursor: pointer; "><i class="fa fa-shopping-cart fa-2x"></i></div>
     <span *ngIf="cartItem" class=" badge rounded-pill badge-notification bg-danger me-2" style="justify-content: center; border: 1px solid white;  background-color: rgb(253, 132, 132); border-radius: 50%;   height: 25px;
       width: 25px; "><b>{{cartItem}}</b> </span>
