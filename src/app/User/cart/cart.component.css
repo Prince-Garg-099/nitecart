@@ -1,0 +1,18 @@
+.btn-lg:hover{
+    background-color: rgb(255, 94, 30);
+    }  
+
+
+   a{
+       text-decoration: none;
+       color:black
+   }
+a:hover{
+    color: blue;
+}
+body{
+    font-family: Arial,sans-serif;
+}
+.sremove{
+    cursor: pointer;
+}

@@ -1,0 +1,102 @@
+<app-navbar></app-navbar>
+
+<div>
+  <h2 style="font-family:'Times New Roman', Times, serif;"  >Total Orders: ({{this.Totalorder}})</h2>
+  <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+            <th scope="col">Order Id</th>
+            <th scope="col">Order Date</th>
+            <th scope="col">User Id</th>
+            <th scope="col"> User Email</th>
+            <th scope="col">User Name</th>
+            <th scope="col">Products Details</th>
+            <th scope="col">Delivery Details</th>
+            <th scope="col">Order status</th>
+            <th scope="col">Payment status</th>
+        </tr>
+    </thead>
+      <tbody>
+        <tr *ngFor="let order of Orders" >
+            <td>{{order._id.toUpperCase()}}</td>
+            <td style="font-size: x-small;" >{{order.ordertime.substr(0, 21)}}</td>
+            <td>{{order.userId.toUpperCase()}}{{order.usergId.toUpperCase()}}</td>
+            <td>{{order.usergemail}}{{order.email}}</td>
+            <td>{{order.usergname}}</td>
+            <td><button class="btn btn-sm btn-warning" type="button"  (click)="openModal(template)">View</button></td>
+
+          <ng-template #template>
+              <div class="modal-header">
+                <h4 class="modal-title">Product Details:  ({{order.products.length}})</h4>
+                <button class="btn-close close" type="button" aria-label="Close" (click)="modalRef?.hide()">
+                  <span class="visually-hidden" aria-hidden="true" >&times;</span>
+                </button>
+              </div>
+                  <div class="modal-body">
+                    <table class="table table-bordered table-hover">
+                      <thead>
+                        <tr>
+                          <th style="font-size: small;" scope="col">Product Name</th>
+                          <th style="font-size: small;" scope="col">Product Price</th>
+                          <th style="font-size: small;" scope="col">Product Quantity</th>
+                          <th  style="font-size: small;" scope="col">Product Id</th>
+                          <th style="font-size: small;" scope="col">Product Total(₹)</th>    
+                        </tr>
+                      </thead>
+                  <tbody>
+                        <tr *ngFor="let prod of order.products">                  
+                          <td style="font-size: x-small;"> {{prod.prodname}}</td>
+                          <td style="font-size: small;">{{prod.prodsellprice}}</td>
+                          <td style="font-size: small;">{{prod.qnt}}</td>
+                          <td style="font-size: small;" >  {{prod._id}}</td>
+                          <td style="font-size: small;">{{prod.prodsellprice*prod.qnt}}</td>
+                        </tr>                
+                  </tbody>
+                </table>
+              </div>
+          </ng-template>
+       
+                      <td>{{order.name}},{{order.address}},{{order.locality}},{{order.city}},{{order.state}},{{order.pincode}},{{order.phoneno}}</td>
+                      <td>
+                        <tr>
+                          <select [(ngModel)]="order.order_status" aria-label="Default select example"
+                            (change)="setOrderStatus(order._id, 'order_status', order.order_status)">
+                              <option value="Ordered">Ordered</option>
+                              <option value="Shipped">Shipped</option>
+                              <option value="Out for Delivery">Out for Delivery</option>
+                              <option value="Delivered">Delivered</option>
+                              <option value="Cancelled">Cancelled</option>
+                          </select>
+                        </tr>
+                      </td>
+                      <td> 
+                        <tr>
+                          <select class="" aria-label="Default select example">
+                          <option value="Pending">Pending</option>
+                          <option value="Paid">Paid</option>
+                          <option value="Refunded">Refunded</option>
+                          </select>
+                        </tr>
+                      </td>
+        </tr>
+      </tbody>
+  </table>
+  
+    <ng-template #template>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Products ordered</h4>
+          <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+          </button>
+      </div>
+        <div class="container">
+          <article class="card">
+            <div class="card-body">
+              <div><img src="../../../assets/2boysshirt.jpg" style="height: 100px;" class="img-sm border"></div>&nbsp;
+              <div><img src="../../../assets/apple ipad.jpg" style="height: 100px;" class="img-sm border"></div>&nbsp;
+              <div><img src="../../../assets/blue tshirt.jpg" style="height: 100px;" class="img-sm border"></div>     
+            </div>
+          </article>
+        </div>
+    </ng-template>
+</div>

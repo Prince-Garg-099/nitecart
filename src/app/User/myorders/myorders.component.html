@@ -1,0 +1,32 @@
+<nav class="navbar sticky-top  navbar-expand-lg navbar-light bg-primary">
+  <a [routerLink]="['/app-home']" class="navbar-brand ps-3" 
+    style="color: white; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;  "><img
+      src="../assets/logo (2).png" alt=""></a>
+  <a [routerLink]="['/app-home']" class="  btn" style=" cursor: pointer; "><i style="color: white; font-size: 21px; "
+      class="fas fa-home "></i></a>
+</nav>
+<div class="container">
+  <div class="mt-3 mb-5  ">
+    <div *ngFor="let order of Orders" style=" border-radius: 5px;  border: 2px  solid rgb(40, 169, 212) ; "
+      class="   mt-3 bg-light">
+      <p class=" m-2" style="color: green;">Order Id : <b>OD{{order._id.toUpperCase()}} </b> </p>
+      <div *ngFor="let prod of order.products" class="row ">
+        <div class=" col-2   m-2 ">
+          <img style="width: 70px; text-align: center; " [src]="service.backendhost+prod.img.path" alt="prodimg">
+        </div>
+        <div class="  col-3 m-2">
+          <h6>{{prod.prodname}}</h6>
+        </div>
+        <div class="col-2 m-2">
+          <p> Status : {{order.order_status}}</p>
+        </div>
+        <div class="col-2 m-2">
+          <h6>Price ₹{{prod.prodsellprice*prod.qnt}}/-</h6>
+        </div>
+      </div>
+      <button class=" m-2 btn-danger btn me-5 " [routerLink]="['/app-tracking',order._id]">Track Order </button><button
+        style="color: red; font-weight: 700;" class="btn  btn-outline btn-sm" (click)="cancelOrder(order._id)"  > ❎ CANCEL</button>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+
+  <div class="container">
+    <h2>Users Details: ({{this.Totaluser}})</h2>
+      <table class="table table-bordered  table-hover">
+        <thead>
+          <tr>
+            <th scope="col">User Id</th>
+            <th scope="col">User Name</th>
+            <th scope="col">User Email</th>
+            <th scope="col">User Contact no.</th>
+            <th scope="col">User Since</th>   
+          </tr>
+       </thead>
+        <tbody>
+          <tr *ngFor="let user of Users" >
+            <td scope="row">{{user._id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.contactno}}</td>
+            <td>{{user.date}}</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>

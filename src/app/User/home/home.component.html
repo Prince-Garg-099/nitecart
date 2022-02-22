@@ -1,0 +1,152 @@
+<nav class="navbar sticky-top  navbar-expand-lg navbar-light bg-primary">
+  <a [routerLink]="['/app-home']" class="navbar-brand ps-3"
+    style="color: white; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;  "><img
+      src="http://localhost:3000/uploads/logo (2).png" alt=""></a>
+  <form class="d-flex col-6 ">
+    <input class="form-control" class="form-control col-7 " style="border-radius: 5px 0px 0px 5px ;" type="search"
+      placeholder="Search products, brands or more" aria-label="Search">
+    <button class="btn btn-light" style="border-radius: 0px 5px 5px 0px ; border: none;" type="submit"><i
+        style="color: black;" class="fas fa-search"></i></button>&nbsp;
+    <div *ngIf="service.loggedIn()" [routerLink]="['/app-cart']" class="ms-3  " style="color: white; cursor: pointer; ">
+      <i class="fa fa-shopping-cart fa-2x"></i>
+    </div>
+    <div *ngIf="!service.loggedIn()" (click)="openModal(template)" class="ms-3  "
+      style="color: white; cursor: pointer; "><i class="fa fa-shopping-cart fa-2x"></i></div>
+    <span *ngIf="cartItem" class=" badge rounded-pill badge-notification bg-danger me-2" style="justify-content: center; border: 1px solid white;  background-color: rgb(253, 132, 132); border-radius: 50%;   height: 25px;
+      width: 25px; "><b>{{cartItem}}</b> </span>
+    <div class="ms-2" dropdown>
+
+      <span *ngIf="service.loggedIn()" id="button-animated" dropdownToggle aria-controls="dropdown-animated"
+        style=" cursor: pointer; color: white; text-align: center;font-size:medium; font-style: italic; "
+        class="fa fa-caret-down"> {{this.UserName[0]}} {{this.gdetails[0]}}</span>
+
+      <ul id="dropdown-animated" *dropdownMenu class=" me-2 dropdown-menu dropdown-menu-right" role="menu"
+        aria-labelledby="button-animated">
+       
+        <li role="menuitem"><a class="dropdown-item" [routerLink]="['/app-myorders']"><i
+              class="fa fa-shopping-cart"></i> My Orders</a></li>
+
+        <li role="menuitem  "><a style="color: red;" (click)="service.logoutUser()" href="/app-home"
+            class="dropdown-item"> <i class="fas fa-sign-out-alt"></i> Logout </a></li>
+      </ul>
+      <a *ngIf="!(service.loggedIn() && user.name)" type="button"
+        style="text-align: center; font-size: large; color: white; " (click)="openModal(template)"> <b>Login</b> </a>
+    </div>
+  </form>
+</nav>
+<carousel>
+  <slide>
+    <img src="http://localhost:3000/uploads/SliderImg1.png" style="display: block; width: 100%;">
+  </slide>
+  <slide>
+    <img src="http://localhost:3000/uploads/SliderImg2.png" style="display: block; width: 100%;">
+  </slide>
+  <slide>
+    <img src="http://localhost:3000/uploads/SliderImg3.png" style="display: block; width: 100%;">
+  </slide>
+  <slide>
+    <img src="http://localhost:3000/uploads/SliderImg4.png" style="display: block; width: 100%;">
+  </slide>
+  <slide>
+    <img src="http://localhost:3000/uploads/SliderImg5.png" style="display: block; width: 100%;">
+  </slide>
+  <slide>
+    <img src="http://localhost:3000/uploads/SliderImg6.png" style="display: block; width: 100%;">
+  </slide>
+  <slide>
+    <img src="http://localhost:3000/uploads/SliderImg7.png" style="display: block; width: 100%;">
+  </slide>
+</carousel>
+
+<div class="row ms-2 mt-3 col-12">
+  <div class="card  col-sm-3 mb-3 " *ngFor="let prod of Products" style="width: 18rem;">
+    <img class="card-img-top p-auto " style="height: 300px; width:px;" [src]="adminservice.backendhost+prod.img.path"
+      alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{prod.prodname}}</h5>
+      <h6 class="card-text">{{prod.proddesc}}</h6>
+      <span style="margin-left: 20px;font-size: 25px; "><b>₹ {{prod.prodsellprice}} </b></span>
+      <i class="fas fa-star ms-1 "></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+        class="fas fa-star"></i><i class="fas fa-star me-1 "></i>
+      <button (click)="addCart(prod)"
+        style="margin-left: 40px; color: rgb(0, 0, 0); font-style: italic; font-weight:600;" id="clickadd"
+        class="btn btn-warning me-2 "><i style="  font-size: 20px;" class="fa fa-shopping-cart"></i> Add to
+        Cart</button>
+    </div>
+
+  </div>
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title ">Login</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="loginForm">
+      <div class="form-group">
+        <label for="email">Email address:</label>
+        <input formControlName="email" type="email" class="form-control" id="email">
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input formControlName="password" type="password" class="form-control" id="pwd">
+      </div>
+
+      <button (click)="loginUser()" (click)="modalRef?.hide()" type="submit" class="btn mt-2 mb-2  btn-primary">Submit
+      </button>
+    </form>
+    <a style="cursor: pointer; text-decoration: none;  " class="mt-5" (click)="openModalsignup(templatesignup)">Create new account</a>&nbsp;
+    <hr>
+    <button style="border: 1px solid rgb(0, 140, 255);  " (click)="signInWithGoogle()" class="btn"> <img style="height:25px; margin-right: 5px;   " src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2048px-Google_%22G%22_Logo.svg.png" alt=""><b>Login with Google</b> 
+    </button>
+  </div>
+  <hr>
+</ng-template>
+
+<ng-template #templatesignup>
+  <form [formGroup]="userForm" class="p-3 border " style="border-radius: 9px;">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">SignUp</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()"
+        (click)="modalRefsingup?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+
+    <div class="form-group mt-2 ">
+      <label for="name">Name</label>
+      <input formControlName="name" type="text" class="form-control" id="name">
+    </div>
+
+    <div class="form-group mt-2">
+      <label for="email">Email address:</label>
+      <input formControlName="email" type="email" class="form-control" id="email">
+    </div>
+
+    <div class="form-group mt-2">
+      <label for="password">Password:</label>
+      <input formControlName="password" type="password" class="form-control" id="password">
+    </div>
+
+    <div class="form-group mt-2">
+      <label for="email">Confirm-password:</label>
+      <input type="password" class="form-control" id="repassword">
+    </div>
+
+    <div class="form-group mt-2">
+      <label for="contactno">Contact number :</label>
+      <input formControlName="contactno" type="text" class="form-control" id="contactno">
+    </div>
+
+    <button (click)="modalRef?.hide()" (click)="registerUser()" (click)="modalRefsingup?.hide()" type="submit"
+      class=" mt-2 mb-2 btn btn-warning"><b>Register</b> 
+    </button>
+
+  </form>
+</ng-template>
+
+<app-footer></app-footer>
+<router-outlet></router-outlet>

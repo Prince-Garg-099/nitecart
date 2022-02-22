@@ -1,0 +1,85 @@
+<nav class="navbar sticky-top  navbar-expand-lg navbar-light bg-primary">
+    <a [routerLink]="['/app-home']" class="navbar-brand ps-5"  style="color: white; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;  "><img src="../../assets/logo (2).png" alt=""></a>
+      <a [routerLink]="['/app-home']" class="  btn" style=" cursor: pointer; " ><i style="color: white; font-size: 21px; " class="fas fa-home "></i></a>    
+</nav>
+<div class="container mb-2 mt-2 ">
+<div class=" m-auto col-10 col-6 border">
+        <h5 type="button" class="well well-lg card card-block card-header my-2 " style="background-color: rgb(0, 56, 226);color: white; " 
+        [attr.aria-expanded]="isCollapsed" aria-controls="collapseBasic" > Step 1:   Add Delivery Address</h5>
+  <div id="collapseBasic" [collapse]="!isCollapsed" [isAnimated]="true">
+    <form [formGroup]="delForm">
+        <div class="form-group row gx-1 ">
+          <input formControlName="name" style="border-radius: 0px;"  type="text" class="form-control my-2 col mx-2   " id="exampleInputEmail1"  placeholder="Name">
+          <input formControlName="phoneno" style="border-radius: 0px;"type="text" class="form-control my-2 col mx-2 " id="exampleInputPassword1" placeholder="10-digit mobile number">
+        </div>
+        <div class="form-group row gx-1 ">
+            <input formControlName="pincode" style="border-radius: 0px;" type="text" class="form-control my-2 col mx-2   " id="exampleInputEmail1"  placeholder="Pin code">
+            <input formControlName="locality" style="border-radius: 0px;"type="text" class="form-control my-2 col mx-2 " id="exampleInputPassword1" placeholder="Locality">
+        </div>
+        <div class="form-group row gx-1">
+            <textarea formControlName="address" style="border-radius: 0px;" type="textarea" class="form-control my-2 col mx-2   " id="exampleInputEmail1"  placeholder="Address (Area and Street)"></textarea>
+        </div>
+        <div class="form-group row gx-1 ">
+            <input formControlName="city" style="border-radius: 0px;  " type="text" class="form-control my-2 col mx-2   " id="exampleInputEmail1"  placeholder="City/District/Town">
+            <select formControlName="state" class=" select my-2 col mx-2 " style="border-color: rgb(216, 216, 216);" name="state" placeholder="State"  required="" >
+                <option value="" disabled="" selected  >--Select State--</option>
+                <option value="Andaman &amp; Nicobar Islands">Andaman &amp; Nicobar Islands</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                <option value="Assam">Assam</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Chandigarh">Chandigarh</option>
+                <option value="Chhattisgarh">Chhattisgarh</option>
+                <option value="Dadra &amp; Nagar Haveli &amp; Daman &amp; Diu">Dadra &amp; Nagar Haveli &amp; Daman &amp; Diu</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Goa">Goa</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Haryana">Haryana</option>
+                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                <option value="Jammu &amp; Kashmir">Jammu &amp; Kashmir</option>
+                <option value="Jharkhand">Jharkhand</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Ladakh">Ladakh</option>
+                <option value="Lakshadweep">Lakshadweep</option>
+                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Manipur">Manipur</option>
+                <option value="Meghalaya">Meghalaya</option>
+                <option value="Mizoram">Mizoram</option>
+                <option value="Nagaland">Nagaland</option>
+                <option value="Odisha">Odisha</option>
+                <option value="Puducherry">Puducherry</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Sikkim">Sikkim</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Tripura">Tripura</option>
+                <option value="Uttarakhand">Uttarakhand</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="West Bengal">West Bengal</option>
+            </select> 
+          </div>
+        <div>
+            <button (click)="onSave()"  type="submit" class="btn btn-warning  mx-4 my-2  "  style="color: white;" > <b> SAVE</b></button>
+            <button class="btn border " [routerLink]="['/app-cart']"  >CANCEL</button>
+        </div> 
+    </form>
+  </div>
+</div>
+<div type="button" class="col-10 m-auto well well-lg card card-block card-header"style="background-color: rgb(0, 56, 226);color: white; " 
+><b> Step 2 : PAYMENT OPTIONS</b>
+</div>
+<div class="col-10 m-auto  " id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
+<button class=" ms-5 mt-2  m-auto  col-8 btn btn-primary mb-2 " [routerLink]="['/app-myorders']"  (click)="pay()" > <b> ₹ {{total}}</b>  Pay with <i> <b>Razorpay</b> </i>  </button>
+<button class=" ms-5 col-8 mt-2 btn  border  btn-white mb-2 "[routerLink]="['/app-myorders']" style="font-family: Arial, Helvetica, sans-serif;"  (click)="cod()"  > <img style="height: 30px;" src="data:image/png;base64,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"
+   alt="">  Cash on Delivery  
+</button>
+</div>
+</div>
+    
+    <app-footer></app-footer>
+
+
+    

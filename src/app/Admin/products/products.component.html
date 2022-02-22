@@ -1,0 +1,71 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <h2> Total Products : ({{TotalProd}})</h2>
+    <button (click)="openModal(template)" class="btn btn-danger mb-2 ">➕ Add New Product</button>
+      <ng-template #template>
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Add Product Details</h4>
+          <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form  [formGroup]="productForm" enctype="multipart/form-data">
+            <div class="form-group row gx-1">
+              <input formControlName="prodname" style="border-radius: 0px;" type="text" class="form-control my-2 col mx-2" id="exampleInputEmail1" placeholder="Product Name">
+            </div>
+            <div class="form-group row gx-1">
+              <input formControlName="prodmrp" style="border-radius: 0px;" type="text" class="form-control my-2 col mx-2" id="exampleInputEmail1" placeholder="Product MRP">
+              <input formControlName="prodsellprice" style="border-radius: 0px;" type="text" class="form-control my-2 col mx-2" id="exampleInputPassword1" placeholder="Product Sellprice">
+            </div>
+            <div class="form-group row gx-1">
+              <textarea formControlName="proddesc" style="border-radius: 0px;" type="textarea" class="form-control my-2 col mx-2" id="exampleInputEmail1" placeholder="Product Description"></textarea>
+            </div>
+            <div class="form-group row gx-1 ">
+              <span> Product Image </span>
+              <input (change)="selectImage($event)" style="border-radius: 0px;" type="file" class="form-control my-2 col mx-2" id="exampleInputEmail1"  placeholder=" Upload Product Image">
+            </div>                
+            <div class="form-group row gx-1 ">
+              <input formControlName="prodseller" style="border-radius: 0px;" type="text" class="form-control my-2 col mx-2 " id="exampleInputEmail1"  placeholder="Seller's Name">
+            </div>
+            <div>
+              <button class="btn btn-warning mx-4 my-2" (click)="onProdAdd()"  style="color: white;"><b>SAVE</b></button>
+              <button class="btn border" aria-label="Close" (click)="modalRef?.hide()">CANCEL</button>
+            </div> 
+          </form>        
+        </div>
+      </ng-template>
+
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Product Id</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Product MRP</th>
+                <th scope="col">Product Sellprice </th>
+                <th scope="col">Product Description </th>
+                <th scope="col">Product Image </th>
+                <th scope="col">Product Seller </th>
+                <th scope="col">Actions </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of Products"  >
+                <td scope="row">{{product._id.toUpperCase()}}</td>
+                <td>{{product.prodname}}</td>
+                <td>{{product.prodmrp}}</td>
+                <td>{{product.prodsellprice}}</td>
+                <td>{{product.proddesc}}</td>
+                <td><img style="height: 50px;  width: 50px;" [src]="service.backendhost+product.img.path" alt=""> </td>
+                <td>{{product.prodseller}}</td>
+                <td> 
+                <div class="d-flex">
+                  <button (click)="deleteprodbyId(product._id)" class="ms-1 btn btn-sm  btn-danger" >DELETE</button>
+                </div>
+                </td>
+              </tr>
+           </tbody>
+          </table>
+</div>

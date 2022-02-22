@@ -1,0 +1,73 @@
+<nav class="navbar sticky-top  navbar-expand-lg navbar-light bg-primary">
+    <a [routerLink]="['/app-home']" class="navbar-brand ps-5"
+        style="color: white; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;  "><img
+            src="../../assets/logo (2).png" alt="">
+    </a>
+    <a [routerLink]="['/app-home']" class="  btn" style=" cursor: pointer; "><i style="color: white; font-size: 21px; "
+            class="fas fa-home "></i>
+    </a>
+</nav>
+
+<div *ngIf="Orders.length" class="container">
+    <a [routerLink]="['/app-myorders']" class=" mb-1 btn btn-warning" data-abc="true"> <i
+            class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i><b> Back to orders</b> </a>
+    <article *ngFor="let order of Orders" class="card">
+        <header class="card-header  "><b> My Orders / Tracking</b> </header>
+        <div class="card-body">
+            <h6 style="color: green;">Order ID : OD{{order._id.toUpperCase()}}</h6>
+            <h6>Date : {{order.ordertime}}</h6>
+            <article class=" mt-2  card">
+                <div class="card-body row">
+                    <div class="col-sm-3">
+                        <span> <b>Delivery Address </b> </span><br>
+                        <span> {{order.name}}</span><br>
+                        <span>{{order.address}}, {{order.locality}}, {{order.city}},{{order.pincode}}, <br>
+                            {{order.state}}.</span><br>
+                        <span style="font-weight: 500;"> Phone number : {{order.phoneno}} </span><br>
+                        <span>Total Item(s) : <b>{{order.products.length}}</b> </span>
+                    </div>
+                </div>
+            </article>
+            <article class="card">
+                <div class="card-body row">
+                    <div class="col-6"> <strong>Estimated Delivery Date:</strong> <br> </div>
+                    <div class="col-6"> <strong>Status:</strong> <br>{{order.order_status}} </div>
+                </div>
+            </article>
+            <div class="track">
+                <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
+                        class="text">Order Confirmed</span> </div>
+                <div *ngIf="order.order_status!=='Cancelled'" class="step"
+                    [class]="{'active' : ['Shipped','Out for Delivery','Delivered','Cancelled'].indexOf(order.order_status) > -1}">
+                    <span class="icon"> <i class="fas fa-truck"></i> </span> <span class="text"> Shipped</span> </div>
+                <div *ngIf="order.order_status!=='Cancelled'" class="step"
+                    [class]="{'active' : ['Out for Delivery','Delivered','Cancelled'].indexOf(order.order_status) > -1}">
+                    <span class="icon"> <i class="fa  fa-motorcycle"></i> </span>
+                    <span class="text"> Out for Delivery </span>
+                </div>
+                <div class="step active" *ngIf="['Delivered'].indexOf(order.order_status) >-1"> <span class="icon"><i
+                            class="fa fa-gifts"></i> </span> <span class="text">Delivered</span> </div>
+                <div class="step active Cancelled " *ngIf="['Cancelled'].indexOf(order.order_status)  >-1"> <span
+                        class="icon"> <i class="fa fa-times fa-2x"></i> </span> <span class="text  "
+                        style="color: red;">Cancelled</span> </div>
+            </div><br>
+            <ul class="row">
+                <li *ngFor="let prod of order.products " class="col-md-4">
+                    <figure class="itemside mb-3">
+                        <div class="aside"><img [src]="adminservice.backendhost+prod.img.path" class="img-sm border">
+                        </div>
+                        <figcaption class="info align-self-center">
+                            <p class="title">{{prod.prodname}}</p> <span
+                                class="text-muted">₹ {{prod.prodsellprice}}×{{prod.qnt}} = ₹ {{prod.prodsellprice*prod.qnt }}</span>
+                        </figcaption>
+                    </figure>
+                </li>
+            </ul>
+        </div>
+    </article>
+</div>
+<app-footer></app-footer>
+
+
+
+

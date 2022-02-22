@@ -1,0 +1,36 @@
+.card-img-top:hover{
+    -ms-transform: scale(1.15); /* IE 9 */
+    -webkit-transform: scale(1.15); /* Safari 3-8 */
+    transform: scale(1.10); 
+    cursor: pointer;
+    transition: .5s; 
+    z-index: 999;
+}
+.fa-user-circle{
+    cursor: pointer;
+    color: white;
+}
+
+.card{
+border: .5px solid rgb(222, 216, 216)
+}      
+slide{
+cursor: pointer;
+}
+.btn-warning:hover{
+background-color: rgb(9, 29, 255);
+}      
+.fa-star{
+    color: rgb(252, 78, 78);
+}
+.fa-shopping-cart:hover{
+    color:rgb(238, 8, 39)
+}
+
+.dropdown-menu{
+    border-radius: 10px;
+}
+
+li{
+    text-align:unset;
+}
