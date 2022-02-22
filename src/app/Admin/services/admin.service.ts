@@ -10,10 +10,10 @@ export class AdminService {
   backendhost='https://nitecartbackend.herokuapp.com/';
   myorders='https://nitecartbackend.herokuapp.com/myorders';
   users='https://nitecartbackend.herokuapp.com/users';
-  products='https://nitecartbackend.herokuapp.com//products';
-  setstatus='https://nitecartbackend.herokuapp.com//set_status';
-  cancelorder='https://nitecartbackend.herokuapp.com//cancelorder';
-  totalorder='https://nitecartbackend.herokuapp.com//orders';
+  products='https://nitecartbackend.herokuapp.com/products';
+  setstatus='https://nitecartbackend.herokuapp.com/set_status';
+  cancelorder='https://nitecartbackend.herokuapp.com/cancelorder';
+  totalorder='https://nitecartbackend.herokuapp.com/orders';
 
   constructor(private _http:HttpClient) { }
 
