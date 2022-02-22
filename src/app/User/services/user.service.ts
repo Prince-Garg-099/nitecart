@@ -9,7 +9,7 @@ export class UserService {
 
   constructor(private _http: HttpClient) { }
   orderidUrl = 'https://nitecartbackend.herokuapp.com/orders';
-  apiUrl = 'https://nitecartbackend.herokuapp.com//user';
+  apiUrl = 'https://nitecartbackend.herokuapp.com/user';
 
   addData(data: any): Observable<any> {
     return this._http.post(`${this.apiUrl}`, data);

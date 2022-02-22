@@ -15,9 +15,9 @@ export class loginAuthService {
     return _window();
   }
 
-  private _registerUrl = "http://localhost:3000/register"
-  private _loginUrl = "http://localhost:3000/login"
-  private _gdataUrl = "http://localhost:3000/gregister"
+  private _registerUrl = "https://nitecartbackend.herokuapp.com/register"
+  private _loginUrl = "https://nitecartbackend.herokuapp.com/login"
+  private _gdataUrl = "https://nitecartbackend.herokuapp.com/gregister"
   constructor(private http: HttpClient, private router: Router, private toastr: ToastrService) { }
 
   createData(data: any) {
