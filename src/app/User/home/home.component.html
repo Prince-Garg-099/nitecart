@@ -58,9 +58,9 @@
   </slide>
 </carousel>
 
-<div class="row ms-2 mt-3 col-12">
-  <div class="card  col-sm-3 mb-3 " *ngFor="let prod of Products" style="width: 18rem;">
-    <img class="card-img-top p-auto " style="height: 300px; width:px;" [src]="adminservice.backendhost+prod.img.path"
+<div class="row  mt-3 ">
+  <div class="card  m-auto mb-1 " *ngFor="let prod of Products" style="width: 18rem;">
+    <img class="card-img-top  " style="height: 280px;" [src]="adminservice.backendhost+prod.img.path"
       alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">{{prod.prodname}}</h5>
