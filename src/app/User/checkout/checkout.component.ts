@@ -117,6 +117,7 @@ pay(){
     console.log(res, 'res==>');
   
     this.toastr.success("Order Placed successfully");
+    localStorage.removeItem('localCart')
 
     this.orderId = res.Orderdetails.insertedId
     console.log(this.orderId)
@@ -135,6 +136,8 @@ cod(){
     console.log(res, 'res==>');
       console.log(this.orderId)
     localStorage.setItem('OrderId',JSON.stringify(this.orderId))
+    localStorage.removeItem('localCart')
+
 
     
 
