@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, SocialUser } from 'ng-social-login-module';
 import { RatingModule } from 'ngx-bootstrap/rating';
 import { ToastrModule } from 'ngx-toastr';
@@ -42,7 +42,7 @@ const CONFIG = new AuthServiceConfig([
   }
 ], true);
 
- 
+
 export function provideConfig() {
   return CONFIG;
 }
@@ -83,19 +83,19 @@ export function provideConfig() {
     SocialLoginModule,
     NgxPrintModule
   ],
-  
-  providers: [loginAuthService,UserService,SocialUser,
+
+  providers: [loginAuthService, UserService, SocialUser,
     {
-      provide:HTTP_INTERCEPTORS,
+      provide: HTTP_INTERCEPTORS,
       useClass: TokeninterceptorService,
-      multi:true
+      multi: true
     },
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig
     }
   ],
-         
+
   bootstrap: [AppComponent]
 })
 
